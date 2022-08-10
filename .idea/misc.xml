@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="UnattendedHostPersistenceState">
+    <option name="openedFilesInfos">
+      <list>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="157" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Navigation/MenuBuilder.php" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="847" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/templates/plan/index.html.twig" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="816" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Controller/PlanController.php" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="3048" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Service/PlanGenerator.php" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="1121" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Repository/PlanRepository.php" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="3260" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Entity/Plan.php" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="3009" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Entity/League.php" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="3957" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Entity/PlanRow.php" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="903" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/templates/plan/_planTab.html.twig" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="0" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/.gitignore" />
+        </OpenedFileInfo>
+      </list>
+    </option>
+  </component>
+</project>

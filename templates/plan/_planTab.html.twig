@@ -1,0 +1,53 @@
+<turbo-frame id="planTab" action="replace">
+    <div class="accordion" id="accordion-{{ league.id }}">
+        {% if league.firstActivePlan %}
+            {% for key in league.firstActivePlan.orderedByGameday|keys %}
+                <div class="accordion-item">
+                <h2 class="accordion-header" id="acc-panel-header{{ league.id }}-{{ key }}">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc-panel-collapse-{{ league.id }}-{{ key }}" aria-expanded="true" aria-controls="acc-pane-collapse-{{ league.id }}-{{ key }}">
+                    Spieltag: {{ key }}
+                </button>
+                </h2>
+                <div id="acc-panel-collapse-{{ league.id }}-{{ key }}" class="accordion-collapse collapse" aria-labelledby="acc-panel-header{{ league.id }}-{{ key }}">
+                        <aside>
+                        {% for row in league.firstActivePlan.orderedByGameday[key] %}
+                            <div class="row gx-0 {% if not loop.last %}border-bottom{% endif %}">
+                                <div class="col-sm-12 col-lg-2 p-1">
+                                    {{ row.homeTeam.name }}
+                                </div>
+                                <div class="col-sm-12 col-lg-1 p-1">
+                                    vs
+                                </div>
+                                <div class="col-sm-12 col-lg-2 p-1">
+                                    {{ row.guestTeam.name }}
+                                </div>
+                                <div class="col-sm-12 col-lg-1 p-1">
+                                    {{ row.date|date('d.m.Y') }}
+                                </div>
+                                <div class="col-sm-12 col-lg-1 justify-content-center p-1">
+                                    {{ row.pointsHome|format_number }} : {{ row.pointsGuest|format_number }}
+                                </div>
+                                <div class="col-sm-12 col-lg-1 justify-content-center p-1">
+                                    {{ row.homeSumGames|format_number }} : {{ row.guestSumGames|format_number }}
+                                </div>
+
+                            </div>
+                        {% endfor %}
+                        </aside>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% else %}
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                Kein Spielplan vorhanden
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {% endif %}
+    </div>
+</turbo-frame>
