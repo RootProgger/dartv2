@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Plan;
 use App\Entity\Tenancy;
+use App\Exceptions\PlanFailedException;
 use App\Service\PlanGenerator;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
@@ -23,9 +24,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 
-#[IsGranted('ROLE_ADMIN')]
+#[IsGranted('ROLE_ADMIN'), AsController]
 class PlanCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -55,9 +58,9 @@ class PlanCrudController extends AbstractCrudController
 
             $entityManager->persist($entityInstance);
             $entityManager->flush();
-        } catch (\Exception $e)
+        } catch (\DomainException | \LengthException $e)
         {
-            $this->addFlash('error', $e->getMessage());
+            throw new PlanFailedException($e->getMessage());
         }
     }
 
@@ -72,7 +75,7 @@ class PlanCrudController extends AbstractCrudController
             try{
                 $this->planGenerator->addPause($entityInstance);
             } catch (\InvalidArgumentException $e) {
-                $this->addFlash('error',$e->getMessage());
+                $this->addFlash('danger',$e->getMessage());
             }
         }
 

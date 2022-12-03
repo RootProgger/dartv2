@@ -3,15 +3,17 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Repository\TenancyRepository;
+use App\Validator\TenancyStandard;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JetBrains\PhpStorm\Pure;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator\TenancyStandardValidator;
 
 #[ORM\Entity(repositoryClass: TenancyRepository::class)]
-#[ORM\UniqueConstraint(name: 'siteUrl_idx', columns: ['site_url'])]
 class Tenancy
 {
     #[ORM\Id]
@@ -19,17 +21,18 @@ class Tenancy
     #[ORM\Column()]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $siteUrl = null;
 
     #[ORM\Column(length: 255)]
     private ?string $siteName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Gedmo\Slug(fields: ['siteName'])]
     private ?string $slug = null;
 
-    #[ORM\Column(options: ['default' => false])]
+    #[ORM\Column(name: 'standard', options: ['default' => false])]
+    #[TenancyStandard()]
     private bool $default = false;
 
     #[ORM\OneToMany(mappedBy: 'tenancy', targetEntity: Team::class, orphanRemoval: true)]
@@ -44,7 +47,7 @@ class Tenancy
     #[ORM\OneToMany(mappedBy: 'tenancy', targetEntity: League::class)]
     private Collection $leagues;
 
-    public function __construct()
+    #[Pure] public function __construct()
     {
         $this->teams = new ArrayCollection();
         $this->places = new ArrayCollection();

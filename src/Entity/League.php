@@ -7,6 +7,7 @@ use App\Repository\LeagueRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 
@@ -37,6 +38,9 @@ class League
 
     #[ORM\OneToMany(mappedBy: 'league', targetEntity: Plan::class, orphanRemoval: true)]
     private Collection $plans;
+
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $sort = null;
 
 
     #[Pure] public function __construct()
@@ -156,6 +160,18 @@ class League
                 $plan->setLeague(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSort(): ?int
+    {
+        return $this->sort;
+    }
+
+    public function setSort(?int $sort): self
+    {
+        $this->sort = $sort;
 
         return $this;
     }

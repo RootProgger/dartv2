@@ -44,7 +44,13 @@ class PlanRow
     #[ORM\OneToMany(mappedBy: 'planRow', targetEntity: PlayerScore::class, orphanRemoval: true)]
     private Collection $playerScore;
 
-    public function __construct()
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private int|null $doubleHome;
+
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private int|null $doubleGuest;
+
+    #[Pure] public function __construct()
     {
         $this->playerScore = new ArrayCollection();
     }
@@ -188,6 +194,29 @@ class PlanRow
             }
         }
         return $games;
+    }
+
+    public function getDoubleHome(): int|null
+    {
+        return $this->doubleHome;
+    }
+
+    public function setDoubleHome(int|null $doubleHome): PlanRow
+    {
+        $this->doubleHome = $doubleHome;
+        return $this;
+    }
+
+
+    public function getDoubleGuest(): int|null
+    {
+        return $this->doubleGuest;
+    }
+
+    public function setDoubleGuest(int|null $doubleGuest): PlanRow
+    {
+        $this->doubleGuest = $doubleGuest;
+        return $this;
     }
 
 

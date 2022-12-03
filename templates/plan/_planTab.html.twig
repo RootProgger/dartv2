@@ -11,16 +11,30 @@
                 <div id="acc-panel-collapse-{{ league.id }}-{{ key }}" class="accordion-collapse collapse" aria-labelledby="acc-panel-header{{ league.id }}-{{ key }}">
                         <aside>
                         {% for row in league.firstActivePlan.orderedByGameday[key] %}
-                            <div class="row gx-0 {% if not loop.last %}border-bottom{% endif %}">
+                            <div class="row p-2 gx-0 {% if not loop.last %}border-bottom{% endif %}">
                                 <div class="col-sm-12 col-lg-2 p-1">
+                                    {% if row.homeTeam is not null %}
                                     {{ row.homeTeam.name }}
+                                    {% else %}
+                                        <span class="text-danger">Spielfrei</span>
+                                    {% endif %}
                                 </div>
                                 <div class="col-sm-12 col-lg-1 p-1">
                                     vs
                                 </div>
                                 <div class="col-sm-12 col-lg-2 p-1">
-                                    {{ row.guestTeam.name }}
+                                    {% if row.guestTeam is not null %}
+                                        {{ row.guestTeam.name }}
+                                    {% else %}
+                                        <span class="text-danger">Spielfrei</span>
+                                    {% endif %}
                                 </div>
+                                {% set gameFree = false %}
+                                {% if row.homeTeam is null or row.guestTeam is null %}
+                                    {% set gameFree = true %}
+                                {% endif %}
+
+                                {% if false == gameFree  %}
                                 <div class="col-sm-12 col-lg-1 p-1">
                                     {{ row.date|date('d.m.Y') }}
                                 </div>
@@ -30,7 +44,11 @@
                                 <div class="col-sm-12 col-lg-1 justify-content-center p-1">
                                     {{ row.homeSumGames|format_number }} : {{ row.guestSumGames|format_number }}
                                 </div>
-
+                                    <div class="col-sm-12 col-lg-2 text-end">
+                                        <a href="{{ path('app.plan.row.entry.step', {step: 1, row: row.id}) }}" {{ stimulus_controller('tooltip', {title: 'Spiel eintragen'})}} class="fa-solid fa-pen-to-square text-decoration-none"></a>
+                                        <a {{ stimulus_controller('tooltip', {title: 'Spiel Details'})}} class="fa-solid fa-eye text-decoration-none"></a>
+                                    </div>
+                                {% endif %}
                             </div>
                         {% endfor %}
                         </aside>

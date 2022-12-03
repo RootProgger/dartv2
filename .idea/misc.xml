@@ -1,47 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="FLOW" />
+  </component>
   <component name="UnattendedHostPersistenceState">
     <option name="openedFilesInfos">
       <list>
         <OpenedFileInfo>
-          <option name="caretOffset" value="157" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Navigation/MenuBuilder.php" />
+          <option name="caretOffset" value="407" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/templates/plan/entryStep1.html.twig" />
         </OpenedFileInfo>
         <OpenedFileInfo>
-          <option name="caretOffset" value="847" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/templates/plan/index.html.twig" />
+          <option name="caretOffset" value="1052" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Form/EntryStep1Type.php" />
         </OpenedFileInfo>
         <OpenedFileInfo>
-          <option name="caretOffset" value="816" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Controller/PlanController.php" />
+          <option name="caretOffset" value="2706" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Dto/EntryDto.php" />
         </OpenedFileInfo>
         <OpenedFileInfo>
-          <option name="caretOffset" value="3048" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Service/PlanGenerator.php" />
-        </OpenedFileInfo>
-        <OpenedFileInfo>
-          <option name="caretOffset" value="1121" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Repository/PlanRepository.php" />
-        </OpenedFileInfo>
-        <OpenedFileInfo>
-          <option name="caretOffset" value="3260" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Entity/Plan.php" />
-        </OpenedFileInfo>
-        <OpenedFileInfo>
-          <option name="caretOffset" value="3009" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Entity/League.php" />
-        </OpenedFileInfo>
-        <OpenedFileInfo>
-          <option name="caretOffset" value="3957" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Entity/PlanRow.php" />
-        </OpenedFileInfo>
-        <OpenedFileInfo>
-          <option name="caretOffset" value="903" />
+          <option name="caretOffset" value="3202" />
           <option name="fileUrl" value="file://$PROJECT_DIR$/templates/plan/_planTab.html.twig" />
         </OpenedFileInfo>
         <OpenedFileInfo>
-          <option name="caretOffset" value="0" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/.gitignore" />
+          <option name="caretOffset" value="1100" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Form/EntryStep2Type.php" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="261" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/assets/styles/app.scss" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="2289" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/src/Controller/PlanController.php" />
         </OpenedFileInfo>
       </list>
     </option>

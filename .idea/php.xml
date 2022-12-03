@@ -21,7 +21,6 @@
       <path value="$PROJECT_DIR$/vendor/nelmio/cors-bundle" />
       <path value="$PROJECT_DIR$/vendor/sensio/framework-extra-bundle" />
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
-      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
@@ -132,7 +131,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
       <path value="$PROJECT_DIR$/vendor/phpstan/phpdoc-parser" />
       <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
-      <path value="$PROJECT_DIR$/vendor/fig/link-util" />
       <path value="$PROJECT_DIR$/vendor/laminas/laminas-code" />
       <path value="$PROJECT_DIR$/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
@@ -156,6 +154,10 @@
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-menu-bundle" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-menu" />
       <path value="$PROJECT_DIR$/vendor/twig/intl-extra" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
+      <path value="$PROJECT_DIR$/vendor/scienta/doctrine-json-functions" />
+      <path value="$PROJECT_DIR$/vendor/twig/string-extra" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

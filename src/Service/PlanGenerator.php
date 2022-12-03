@@ -4,9 +4,9 @@ namespace App\Service;
 
 use App\Entity\Plan;
 use App\Entity\PlanRow;
+use App\Entity\Team;
 use App\Enum\GameDay;
 use Doctrine\ORM\EntityManagerInterface;
-use http\Exception\InvalidArgumentException;
 
 final class PlanGenerator
 {
@@ -41,11 +41,14 @@ final class PlanGenerator
 
         $teamCount = $teams->count();
         if($teamCount < 4) {
-            throw new \UnexpectedValueException(sprintf('Teamcount %d is lower than 4 ', $teamCount));
+            throw new \LengthException(sprintf('Teamcount %d is lower than 4 ', $teamCount));
         }
+
+
 
         $teams = $teams->toArray();
         if($teamCount % 2) {
+
             $teams[] = null;
             $teamCount++;
         }
@@ -76,9 +79,9 @@ final class PlanGenerator
                     $home  = $teams[$xpos - $spPair];
                     $guest = $teams[$spPair];
                 }
-                if(null === $league->getDay() && null === $home->getDay())
+                if(null === $league->getDay() && null !== $home && null === $home->getDay())
                 {
-                    throw new InvalidArgumentException(sprintf('Team: "%s" has no Gameday set. League Gameday overwrites Team-Gameday!', $home->getName()));
+                    throw new \DomainException(sprintf('Team: "%s" has no Gameday set. League Gameday overwrites Team-Gameday!', $home->getName()));
                 }
 
                 $planRow = (new PlanRow())
@@ -103,7 +106,8 @@ final class PlanGenerator
 
         foreach ($plan->getPlanRows() as $row)
         {
-            if(null !== $row->getHomeTeam()->getDay())
+            $gameDay = null;
+            if(null !== $row->getHomeTeam() && null !== $row->getHomeTeam()->getDay())
             {
                 $gameDay = $row->getHomeTeam()->getDay();
             }

@@ -47,7 +47,9 @@ class TeamCrudController extends AbstractCrudController
             yield AssociationField::new('league')->setLabel('Liga');
             yield AssociationField::new('place')->setLabel('Spielstätte');
             //yield HiddenField::new('tenancy');
-               yield AssociationField::new('tenancy')->setLabel('SaaS')->hideOnDetail()->setPermission('IS_IMPERSONATOR');
+               yield AssociationField::new('tenancy')->setLabel('SaaS')->hideOnDetail()->setPermission('IS_IMPERSONATOR')->setQueryBuilder(
+                   fn(QueryBuilder $queryBuilder) => $queryBuilder->andWhere('entity.siteName != :name')->setParameter('name', 'Administration')
+               );
             yield EnumField::new('day')->setFormTypeOptions([
                 'class' => GameDay::class
             ])->setLabel('Spieltag')->formatValue(fn ($value) => ($value instanceof \BackedEnum) ? $value->name : null)->setHelp('Wird von Liga falls gesetzt überschrieben.');

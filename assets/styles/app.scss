@@ -1,3 +1,29 @@
-
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
 @import "~bootstrap/scss/bootstrap";
+
+//@import "../../public/bundles/craueformflow/css/buttons.css";
+
+body {
+    transition: opacity 1000ms;
+}
+turbo-frame
+{
+    display: block;
+}
+turbo-frame[busy]
+{
+    opacity: .7;
+}
+
+a.fa-pen-to-square
+{
+    color: var(--bs-success);
+}
+a.fa-eye
+{
+    color: var(--bs-info);
+}
 

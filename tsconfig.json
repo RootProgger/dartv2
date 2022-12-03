@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "sourceMap": true,
+    "moduleResolution": "Node",
+    "noEmit": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "removeComments": false,
+    "strictNullChecks": true,
+    "alwaysStrict": false
+  },
+  "exclude": [
+    "vendor",
+    "**/*.spec.ts"
+  ]
+}

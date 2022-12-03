@@ -3,13 +3,14 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Enum\UserRole;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
+#[ORM\Table(name: 'appuser')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     public const ROLE_SUPERADMIN = 'ROLE_SUPERADMIN';
@@ -39,9 +40,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: false)]
     private string $lastname;
 
-    /**
-     * @var string The hashed password
-     */
     #[ORM\Column]
     private ?string $password = null;
 
@@ -90,6 +88,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return array_unique($roles);
+    }
+
+    public function addRole(UserRole $role): static
+    {
+        if(false === in_array($role->label(), $this->roles))
+        {
+            $this->roles[] = $role->label();
+        }
+        return $this;
     }
 
     public function setRoles(array $roles): self

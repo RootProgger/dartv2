@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row justify-content-center">
+        <div class="col-8" >
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center border-bottom pb-1">{{ row.homeTeam.name }} <span class="badge bg-success">vs</span> {{ row.guestTeam.name }}</h3>
+                    <h5 class="text-success">{{ label }}:</h5>
+                </div>
+                <div class="card-body">
+                {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    {{ form_rest(form) }}
+                    <input type="submit" value="weiter" class="btn btn-primary" />
+                    <input type="reset" value="zurücksetzen" class="btn btn-secondary" />
+                {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

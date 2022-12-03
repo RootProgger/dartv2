@@ -73,10 +73,10 @@ class PlanRowCrudController extends AbstractCrudController
         yield NumberField::new('gameDay')->setLabel('Spieltag')->setFormTypeOption('attr', ['readonly' => true]);
         yield AssociationField::new('homeTeam')->setLabel('Heim-Team')->setQueryBuilder(
             fn(QueryBuilder $builder) => $builder->addCriteria($criteria)
-        );
+        )->formatValue(fn($value) => $value ?: 'Spielfrei');
         yield AssociationField::new('guestTeam')->setLabel('Gast-Team')->setQueryBuilder(
             fn(QueryBuilder $builder) => $builder->addCriteria($criteria)
-        );
+        )->formatValue(fn($value) => $value ?: 'Spielfrei');
         yield DateField::new('date')->setLabel('Datum');
         yield NumberField::new('pointsHome')->setLabel('Punkte Heim')->formatValue(fn($value) => null === $value ? 0 : $value);
         yield NumberField::new('pointsGuest')->setLabel('Punkte Gast')->formatValue(fn($value) => null === $value ? 0 : $value);

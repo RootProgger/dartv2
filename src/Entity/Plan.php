@@ -22,7 +22,7 @@ class Plan
     private ?League $league = null;
 
     #[ORM\Column]
-    private ?bool $active = null;
+    private bool $active = false;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $startDate = null;
@@ -160,5 +160,10 @@ class Plan
         ksort($plan);
 
         return $plan;
+    }
+
+    public function __toString(): string
+    {
+        return $this->league->getName();
     }
 }

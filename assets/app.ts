@@ -10,6 +10,11 @@ import './styles/app.scss';
 
 // start the Stimulus application
 import './bootstrap';
+import './turbo/turbo-helper';
 
-// get bootrstrap-js (framework)
-require('bootstrap');
+
+
+
+
+
+

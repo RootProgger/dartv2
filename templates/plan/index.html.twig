@@ -3,6 +3,7 @@
 {% block title %}Spielplände{% endblock %}
 
 {% block body %}
+    {%  if leagues.count > 0 %}
     <ul class="nav nav-tabs justify-content-center" role="tablist">
         {% for league in leagues %}
             <li class="nav-item" role="presentation">
@@ -15,9 +16,14 @@
     <div class="tab-content" id="planTabContent">
         {% for league in leagues %}
             <div class="tab-pane fade {% if loop.first %}show active{% endif %}" id="tab-{{ league.id }}-pane" role="tabpanel" aria-labelledby="tab-{{ league.id }}" tabindex="0">
-                <turbo-frame loading="lazy" id="planTab" src="{{ fragment_uri(controller('App\\Controller\\PlanController::_planTab', {league: league.id})) }}"></turbo-frame>
+                <turbo-frame target="_top" loading="lazy" id="planTab" src="{{ fragment_uri(controller('App\\Controller\\PlanController::_planTab', {league: league.id})) }}"></turbo-frame>
             </div>
         {% endfor %}
     </div>
-
+        {{ include('modal/_modal.html.twig') }}
+    {% else %}
+    <div class="alert alert-info" role="alert">
+        Keine Daten gefunden!
+    </div>
+    {% endif %}
 {% endblock %}
