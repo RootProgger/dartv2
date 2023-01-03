@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Entity\Tenancy;
@@ -11,11 +13,14 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/'), AsController]
-class IndexController extends BaseAbstractController
+class IndexController extends AbstractController
 {
     private Tenancy $tenancy;
-    public function __construct(private readonly RequestStack $requestStack, private readonly EntityManagerInterface $entityManager)
-    {
+
+    public function __construct(
+        private readonly RequestStack $requestStack,
+        private readonly EntityManagerInterface $entityManager
+    ) {
         $tenantId = $this->requestStack->getSession()->get('tenancy-site-id', null);
         $this->tenancy = $this->entityManager->getRepository(Tenancy::class)->find($tenantId);
     }

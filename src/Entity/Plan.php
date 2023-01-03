@@ -56,7 +56,7 @@ class Plan
         return $this;
     }
 
-    public function isActive(): ?bool
+    public function isActive(): bool
     {
         return $this->active;
     }

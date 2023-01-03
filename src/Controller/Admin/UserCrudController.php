@@ -55,9 +55,11 @@ class UserCrudController extends AbstractCrudController
         $tenant = AssociationField::new('tenancy')->setLabel('Saas');
 
 
-        if(Crud::PAGE_INDEX === $pageName) {
+        if (Crud::PAGE_INDEX === $pageName) {
             return [$id, $first, $last, $email, $role, $tenant];
-        }elseif (Crud::PAGE_EDIT === $pageName){
+        }
+
+        if(Crud::PAGE_EDIT === $pageName) {
             return [
                 $id,
                 $first,
@@ -66,9 +68,9 @@ class UserCrudController extends AbstractCrudController
                 $tenant,
                 $role,
             ];
-        } else {
-            return [$id, $first, $last, $email, $role, $pass, $tenant];
         }
+
+        return [$id, $first, $last, $email, $role, $pass, $tenant];
     }
 
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder

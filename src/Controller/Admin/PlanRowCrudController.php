@@ -14,12 +14,17 @@ use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\DateTimeFilter;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\NumericFilter;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\TextFilter;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class PlanRowCrudController extends AbstractCrudController
@@ -82,6 +87,16 @@ class PlanRowCrudController extends AbstractCrudController
         yield NumberField::new('pointsGuest')->setLabel('Punkte Gast')->formatValue(fn($value) => null === $value ? 0 : $value);
         yield NumberField::new('homeSumGames')->setLabel('Spiele Heim')->formatValue(fn($value) => null === $value ? 0 : $value)->hideOnForm();
         yield NumberField::new('guestSumGames')->setLabel('Spiele Gast')->formatValue(fn($value) => null === $value ? 0 : $value)->hideOnForm();
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add(NumericFilter::new('gameDay'))
+            ->add(EntityFilter::new('homeTeam'))
+            ->add(EntityFilter::new('guestTeam'))
+            ->add(DateTimeFilter::new('date'))
+        ;
     }
 
 }

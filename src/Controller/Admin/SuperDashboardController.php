@@ -25,7 +25,7 @@ class SuperDashboardController extends AbstractDashboardController
     {
         if(false === $this->isGranted('ROLE_SUPERADMIN')){
 
-            return $this->redirect('/admin_c');
+            return $this->redirectToRoute('/admin_c');
         }
         return $this->render('admin/dashboard.html.twig');
     }

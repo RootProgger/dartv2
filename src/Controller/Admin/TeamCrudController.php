@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
@@ -20,6 +21,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\HiddenField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\ChoiceFilter;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\TextFilter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -28,7 +32,7 @@ class TeamCrudController extends AbstractCrudController
 {
     private Tenancy $tenancy;
 
-    public function __construct(RequestStack $requestStack, EntityManagerInterface $entityManager){
+    public function __construct(readonly RequestStack $requestStack, readonly EntityManagerInterface $entityManager){
         $siteId = $requestStack->getSession()->get('tenancy-site-id');
         $this->tenancy = $entityManager->getRepository(Tenancy::class)->find($siteId);
     }
@@ -62,6 +66,15 @@ class TeamCrudController extends AbstractCrudController
         return parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters)
             ->andWhere('entity.tenancy = :tenant')
             ->setParameter('tenant', $this->tenancy);
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add(TextFilter::new('name'))
+            ->add(EntityFilter::new('league'))
+            ->add(EntityFilter::new('place'))
+        ;
     }
 
 }

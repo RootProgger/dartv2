@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Controller\Admin;
 
 use App\Entity\League;
@@ -10,7 +12,6 @@ use App\Entity\Players;
 use App\Entity\Team;
 use App\Entity\Tenancy;
 use Doctrine\ORM\EntityManagerInterface;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
@@ -26,13 +27,17 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[AsController, IsGranted('ROLE_ADMIN')]
 class DashboardController extends AbstractDashboardController
 {
-    public function __construct(private EntityManagerInterface $entityManager, private RequestStack $requestStack){}
+    public function __construct(
+        private readonly EntityManagerInterface $entityManager,
+        private readonly RequestStack $requestStack
+    ) {
+    }
 
 
-    #[Route('/admin_c')]
+    #[Route('/admin')]
     public function index(): Response
     {
-        if(false === $this->isGranted('ROLE_ADMIN')) {
+        if (false === $this->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('app.index');
         }
 
@@ -44,7 +49,8 @@ class DashboardController extends AbstractDashboardController
         $tenantId = $this->requestStack->getSession()->get('tenancy-site-id', null);
         $tenant = $this->entityManager->getRepository(Tenancy::class)->find($tenantId);
         return Dashboard::new()
-            ->setTitle($tenant->getSiteName());
+                        ->setTitle($tenant->getSiteName())
+        ;
     }
 
     public function configureMenuItems(): iterable
@@ -65,7 +71,7 @@ class DashboardController extends AbstractDashboardController
         $newMenu = [MenuItem::linkToLogout('Logout', 'fa fa-sign-out')];
 
         if ($this->isGranted(Permission::EA_EXIT_IMPERSONATION)) {
-            $url = $this->generateUrl('app_admin_superdashboard_index',['_switch_user' => '_exit']);
+            $url = $this->generateUrl('app_admin_superdashboard_index', ['_switch_user' => '_exit']);
             $newMenu[] = MenuItem::linkToUrl('Exit Impersonation', 'fa-user-lock', $url);
         }
 

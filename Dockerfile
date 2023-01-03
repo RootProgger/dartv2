@@ -4,7 +4,7 @@
 
 
 # https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
-ARG PHP_VERSION=8.1
+ARG PHP_VERSION=8.2
 ARG CADDY_VERSION=2
 
 # "php" stage
@@ -136,8 +136,9 @@ COPY docker/caddy/Caddyfile /etc/caddy/Caddyfile
 
 FROM symfony_php AS symfony_php_debug
 
-ARG XDEBUG_VERSION=3.1.2
+ARG XDEBUG_VERSION=3.2.0
 RUN set -eux; \
+    apk add --update linux-headers; \
 	apk add --no-cache --virtual .build-deps $PHPIZE_DEPS; \
 	pecl install xdebug-$XDEBUG_VERSION; \
 	docker-php-ext-enable xdebug; \

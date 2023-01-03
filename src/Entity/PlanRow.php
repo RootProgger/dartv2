@@ -219,6 +219,14 @@ class PlanRow
         return $this;
     }
 
-
+    public function __toString()
+    {
+        return sprintf(
+            'Spieltag %d, %s vs %s',
+            $this->gameDay,
+            $this->homeTeam->getName(),
+            $this->guestTeam->getName(),
+        );
+    }
 
 }
