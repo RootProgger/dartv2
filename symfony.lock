@@ -1,18 +1,4 @@
 {
-    "api-platform/core": {
-        "version": "2.6",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "2.5",
-            "ref": "05b57782a78c21a664a42055dc11cf1954ca36bb"
-        },
-        "files": [
-            "config/packages/api_platform.yaml",
-            "config/routes/api_platform.yaml",
-            "src/Entity/.gitignore"
-        ]
-    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -295,6 +281,15 @@
         "files": [
             "config/packages/security.yaml"
         ]
+    },
+    "symfony/stimulus-bundle": {
+        "version": "2.10",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.8",
+            "ref": "9e33a8a3794b603fb4be6c04ee5ecab901ce549e"
+        }
     },
     "symfony/translation": {
         "version": "6.0",
